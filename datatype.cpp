@@ -16,7 +16,7 @@ int main(){
 	unsigned char unsigned_char_variable;
 	signed char signed_char_variable;
 	float float_variable;
-    double double_variable;	
+    	double double_variable;	
 	long double long_double_variable; 
 	bool bool_variable;
 	
@@ -33,13 +33,11 @@ int main(){
 	unsigned char unsigned_char_array[10];
 	signed char signed_char_array[10];
 	float float_array[10];
-    double double_array[10];	
+    	double double_array[10];	
 	long double long_double_array[10]; 
 	bool bool_array[10];
 	
-	
 	//Printing the size of variables of different data types............
-	
 	cout << " \n Printing the size of variables of different data types............ \n";
 	cout << " \n size of int_variable: "         << sizeof(integer_variable);
 	cout << " \n size of long_int_variable: "    << sizeof(long_int_variable);
@@ -53,12 +51,11 @@ int main(){
 	cout << " \n size of unsigned_char_variable: " << sizeof(unsigned_char_variable);
 	cout << " \n size of signed_char_variable: "   << sizeof(signed_char_variable);
 	cout << " \n size of float_variable: "         << sizeof(float_variable);
-    cout << " \n size of double_variable: "        << sizeof(double_variable);	
+    	cout << " \n size of double_variable: "        << sizeof(double_variable);	
 	cout << " \n size of long_double_variable: "   << sizeof(long_double_variable); 
 	cout << " \n size of bool_variable: "          << sizeof(bool_variable);
 	
 	//Printing the size of arrays of different data types............ 
-	
 	cout << " \n Printing the size of arrays of different data types............\n";
 	cout << " \n size of int_array: "         << sizeof(integer_array);
 	cout << " \n size of long_int_array: "    << sizeof(long_int_array);
@@ -72,10 +69,9 @@ int main(){
 	cout << " \n size of unsigned_char_array: " << sizeof(unsigned_char_array);
 	cout << " \n size of signed_char_array: "   << sizeof(signed_char_array);
 	cout << " \n size of float_array: "         << sizeof(float_array);
-    cout << " \n size of double_array: "        << sizeof(double_array);	
+    	cout << " \n size of double_array: "        << sizeof(double_array);	
 	cout << " \n size of long_double_array: "   << sizeof(long_double_array); 
 	cout << " \n size of bool_array: "          << sizeof(bool_array);
-	
 	
 return 0;	
 	
