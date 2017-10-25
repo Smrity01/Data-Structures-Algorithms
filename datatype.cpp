@@ -21,7 +21,7 @@ int main(){
 	bool bool_variable;
 	
 	//array declaration
-	int integer_array;
+	int integer_array[10];
 	long int long_int_array[10];
 	short int short_int_array[10];
 	signed int signed_int_array[10];
