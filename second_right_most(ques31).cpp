@@ -10,8 +10,7 @@ int main(){
   cout << "_____Second Right most digit of an integer value____\n";
   cout << "Enter an integer: ";
   cin >> input;
-  int last = static_cast<int>(input) % 10;
-  int sec_right = (input - last) / 10;
-  cout << "The right most digit of your number is: " << sec_right % 10 <<'\n';
+  int sec_right = (static_cast<int>(input) / 10 ) % 10;
+  cout << "The right most digit of your number is: " << sec_right  <<'\n';
 return 0;
 }
