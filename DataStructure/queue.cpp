@@ -10,11 +10,11 @@ using namespace std;
 template <class T>
 class queue{
 		/*
-	Objective       : Creating a class stack to implement stack methods
+	Objective       : Creating a class Queue to implement queue methods
 	Input parameter : None
 	Output Values   : None
 	Description     : Class definition
-	Approach        : Class defines data member and member function of the stack class
+	Approach        : Class defines data member and member function of the queue class
 	*/
 	public:
 		T *arr;
@@ -34,6 +34,13 @@ class queue{
 
 template <class T>
 queue<T>::queue(){
+	/*
+	Objective       : Creating a class Queue constructor
+	Input parameter : None
+	Output Values   : None
+	Description     : Class Constructor definition
+	Approach        : Initializing the variables of class Queue
+	*/
 	capacity = 0;
 	arr = new T[capacity];
 	front = -1;
@@ -41,11 +48,25 @@ queue<T>::queue(){
 }
 template <class T>
 queue<T>::~queue(){
+	/*
+	Objective       : Destructor of a class Queue
+	Input parameter : None
+	Output Values   : None
+	Description     : Class destructor
+	Approach        : Deleting the variables of class Queue
+	*/
 	delete[] arr;
 }
 
 template <class T>
 bool queue<T>::isempty(){
+	/*
+	Objective       : is_empty function of a class queue
+	Input parameter : None
+	Output Values   : None
+	Description     : Class function
+	Approach        : Just checking whether the queue is empty or not
+	*/
 	if(front == -1 && rear == -1){
 	   return true;
 	}
@@ -56,6 +77,13 @@ bool queue<T>::isempty(){
 
 template <class T>
 bool queue<T>::isfull(){
+	/*
+	Objective       : Function of a class Queue
+	Input parameter : None
+	Output Values   : None
+	Description     : Class function
+	Approach        : Just checking whether the Queue is full or not
+	*/
 	if(rear == capacity-1){
 		return true;
 	}
@@ -66,6 +94,13 @@ bool queue<T>::isfull(){
 
 template <class T>
 void queue<T>::enqueue(T element){
+	/*
+	Objective       : Function of a class Queue
+	Input parameter : Element that need to be inserted
+	Output Values   : print if queue is full
+	Description     : Class function
+	Approach        : Inserting element in the queue at back(rear)
+	*/
 	if(isfull()){
 		cout << "Queue is full...!\n";
 	}
@@ -80,6 +115,13 @@ void queue<T>::enqueue(T element){
 
 template <class T>
 void queue<T>::dequeue(){
+	/*
+	Objective       : Function of a class queue
+	Input parameter : None
+	Output Values   : Print if queue is empty
+	Description     : Class function
+	Approach        : Moving out the front element from queue
+	*/
 	if(isempty()){
 		cout << "Queue is empty..!\n";
 	}
@@ -90,6 +132,13 @@ void queue<T>::dequeue(){
 
 template <class T>
 T queue<T>::peek(){
+	/*
+	Objective       : Function of a class queue
+	Input parameter : None
+	Output Values   : Print if queue is empty
+	Description     : Class function
+	Approach        : Returning the front element from queue
+	*/
 	if(isempty()){
 		cout << "Queue is empty..!\n";
 	}
@@ -100,11 +149,25 @@ T queue<T>::peek(){
 
 template <class T>
 int queue<T>::size(){
+	/*
+	Objective       : Function of a class queue
+	Input parameter : None
+	Output Values   : None
+	Description     : Class function
+	Approach        : Returning the difference between rear and front (size of queue)
+	*/
 	return rear-front+1;
 }
 
 template <class T>
 void queue<T>::display(){
+	/*
+	Objective       : Function of a class queue
+	Input parameter : None
+	Output Values   : Print the elements of queue
+	Description     : Class function
+	Approach        : Traverse the array using for loop
+	*/
 	if(isempty()){
 		cout << "Queue is empty....\n";
 	}
@@ -161,4 +224,3 @@ int main(){
 	}
 	return 0;
 }
-
