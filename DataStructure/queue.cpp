@@ -189,7 +189,7 @@ int main(){
 	
 	int choice;
 	queue<int> object;
-	cout << "Enter the size of the array: ) ";
+	cout << "Enter the size of the array: ";
 	cin >> object.capacity;
 	while(object.capacity <= 0 ){
 		cout <<"Size should be greater than 0...!";
