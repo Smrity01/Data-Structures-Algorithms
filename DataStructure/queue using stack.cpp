@@ -16,8 +16,7 @@ class Queue{
 	Approach        : Class defines data member and member function of the queue class
 	*/
 	public:
-		stack<int> s1;
-		stack<int> s2;
+		stack<int> s1,s2;
 		void queue_push(int);
 		int queue_peek();
 		void queue_pop();
@@ -37,14 +36,23 @@ void Queue::queue_push(int element){
 			s1.push(s2.top());
 			s2.pop();
 		}
-		s1.push(element);
+		s2.push(element);
+		while(!s1.empty()){
+			s2.push(s1.top());
+			s1.pop();
+		}
 	}
 	else{
 		while(!s1.empty()){
 			s2.push(s1.top());
 			s1.pop();
 		}
-		s2.push(element);
+		s1.push(element);
+		while(!s2.empty()){
+			s1.push(s2.top());
+			s2
+			.pop();
+		}
 	}
 }
 int Queue::queue_peek(){
@@ -101,17 +109,17 @@ void Queue::display(){
 	Approach        : Traverse the stack using while loop(poping from one and inserting in second stack)
 	*/
 	if(s1.empty()){
-		while(!s2.empty()){
-			s1.push(s2.top());
-			cout << s2.top() <<"_\n";
-			s2.pop();
+		s1 = s2;
+		while(!s1.empty()){
+			cout << s1.top() <<"|";
+			s1.pop();
 		}
 	}
 	else{
-		while(!s1.empty()){
-			s2.push(s1.top());
-			cout << s1.top() <<"_\n";
-			s1.pop();
+		s2 = s1;
+		while(!s2.empty()){
+			cout << s2.top() <<"|";
+			s2.pop();
 		}
 	}
 }
@@ -145,7 +153,7 @@ int main(){
 		            object.display();
 		            break;
 		    case 5: cout <<"\nSize of Queue is: " ;
-		            object.size();
+		            object.queue_size();
 		            break;
 		    case 6: exit(0);
 		    default: cout << "\nWrong choice..."; 
@@ -153,4 +161,3 @@ int main(){
 	}
 	return 0;	
 }
-
