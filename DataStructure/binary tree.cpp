@@ -1,7 +1,7 @@
 /*
 Implementation of Binary tree
- Written: Smrity Chaudhary
- Dated  : 20/03/2018
+ Written By: Smrity Chaudhary
+    Dated  : 20/03/2018
 */
 #include<iostream>
 #include<conio.h>
