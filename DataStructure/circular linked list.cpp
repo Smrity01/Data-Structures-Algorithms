@@ -20,7 +20,6 @@ class linkedlist{
 		void element_deletion(T);
 		void front_insertion(T);
 		void display();
-		void split(linkedlist<T>&);
 };
 template <class T>
 linkedlist<T>::linkedlist(){
@@ -152,34 +151,12 @@ void linkedlist<T>::front_insertion(T element){
 	head = newnode;
 	return;
 }
-template <class T>
-void linkedlist<T>::split(linkedlist<T>& l2){
-	if(head == NULL){
-		cout << "\nList is empty..";
-		return;
-	}
-	if(head->next == head){
-		cout << "\nOnly one element in the list";
-		return;
-	}
-	node<T>* slow = head;
-	node<T>* fast = head;
-	while(slow->next != head){
-		slow = slow->next;
-		fast = fast->next->next;
-	}
-	while(fast->next != head ){
-		l2.insertion(fast->next->data);
-		element_deletion(fast->next->data);
-	}
-	return;
-}
 int main(){
 	linkedlist<int> object,l2;
 	
 	int choice;
 	while(1){
-		cout <<"\n\n\n***********MENU*********\n1.Insertion at Back \n2.Insertion At front \n3.Delete Front \n4.Delete Back \n5.Delete element \n6.DISPLAY \n7. split the list into two \n8.EXIT";
+		cout <<"\n\n\n***********MENU*********\n1.Insertion at Back \n2.Insertion At front \n3.Delete Front \n4.Delete Back \n5.Delete element \n6.DISPLAY \n7.EXIT";
 		cout << "\nEnter your choice: ";
 	    cin >> choice;
 	
@@ -206,17 +183,10 @@ int main(){
 				    object.element_deletion(element);
 				    object.display();
 		            break;
-			case 6: cout <<"\nLinked list is: " ;
+		    case 6: cout <<"\nLinked list is: " ;
 		            object.display();
 		            break;
-		    case 7: cout <<"split the linkedlist into two..\n";
-					object.split(l2);
-		    		cout << "\n****previous list:****\n";
-		    		object.display();
-		    		cout << "****New list:***\n";
-					l2.display();
-					break;		
-		    case 8: exit(0);
+		    case 7: exit(0);
 		    default: cout << "\nWrong choice..."; 
 		}
 	}
