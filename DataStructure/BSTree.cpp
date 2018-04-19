@@ -37,7 +37,8 @@ class Bstree{
 		void preorder(tnode<T>* root);
 		void postorder(tnode<T>* root);
 		bool search(tnode<T>* root, T);
-		//void max_bst(tnode<T>* root);
+		tnode<T>* min_node(tnode<T>* root);
+		tnode<T>* deletenode(tnode<T>* root ,T element);
 };
 template <class T>
 Bstree<T>::Bstree(){
@@ -163,7 +164,55 @@ void Bstree<T>::postorder(tnode<T>* root){
 	cout << root->data <<",";
 	return;
 }
-
+template <class T>
+tnode<T>* Bstree<T>::min_node(tnode<T>* temp){
+	/*
+	Objective       : Create a member function of Class of a binary Search tree
+	Input Parameter : Root of the binary tree
+	Output Parameter: None
+	Description     : Member function definition
+	Approach        : Find the minimum element of the given BST
+	*/
+	while(temp->left != NULL){
+		temp = temp->left;
+	}
+	return temp;
+}
+template <class T>
+tnode<T>* Bstree<T>::deletenode(tnode<T>* root ,T element){
+	/*
+	Objective       : Create a member function of Class of a binary Search tree
+	Input Parameter : Root of the binary tree and the element that need to be deleted
+	Output Parameter: None
+	Description     : Member function definition
+	Approach        : Recursively call itself and delete node by considering all cases of a node having child
+	*/
+	if (root == NULL){
+		return root;
+	}
+	if (element < root->data){
+		root->left = deletenode(root->left,element);
+	}
+	else if(element > root->data){
+		root->right = deletenode(root->right,element);
+	}
+	else{
+		if(root->left == NULL){
+			tnode<T>* temp = root->right;
+			delete root;
+			return temp;
+		}
+		else if(root->right == NULL){
+			tnode<T>* temp = root->left;
+			delete root;
+			return temp;
+		}
+		tnode<T>* temp = min_node(root->right);
+		root->data = temp->data;
+		root->right = deletenode(root->right,temp->data);
+	}
+	return root;
+}
 int main(){
 	/*
 	Objective       : Create a Object of binary Search tree class and calll required member function
@@ -174,7 +223,7 @@ int main(){
 	Bstree<int> object;
 	int choice;
 	while(1){
-		cout <<"\n\n\n***********MENU*********\n1.Insertion in BST \n2.Display using inorder \n3.Search an element \n4.Post Order \n5.Pre Order \n6.EXIT";
+		cout <<"\n\n\n***********MENU*********\n1.Insertion in BST \n2.Display using inorder \n3.Search an element \n4.Post Order \n5.Pre Order \n6. Delete Node \n7.EXIT";
 		cout << "\nEnter your choice: ";
 	    cin >> choice;
 	   switch(choice){
@@ -199,7 +248,17 @@ int main(){
 			        break;
 			case 5: object.preorder(object.root);
 			        break;
-			case 6: exit(0);
+			case 6: cout << "Enter an element you want to delete: ";
+		            cin >> element;
+		            if (object.search(object.root,element)){
+			        	object.root = object.deletenode(object.root,element);
+				        object.display(object.root);
+					}
+					else{
+						cout << "\nElement not found...";
+					}
+			        break;
+			case 7: exit(0);
 		    default: cout << "\nWrong choice..."; 
 		}
 	}
