@@ -1,5 +1,5 @@
 /*
-Reverse in Pair of linked list
+Implementation of linked list(using node Structure) - insertions adn deletions
 Written by : Smrity Chaudhary
     Dated  : 21/03/2018
 */
