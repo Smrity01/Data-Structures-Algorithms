@@ -1,5 +1,5 @@
 /*
-Reverse in Pair of linked list
+Check Consecutive numbers in stack
 Written by : Smrity Chaudhary
      Dated : 20-03-2018
 */
