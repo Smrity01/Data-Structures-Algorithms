@@ -133,6 +133,41 @@ int linkedlist<T>::length_iterative(){
 		}
 		return length;
 }
+template <class T>
+void linkedlist<T>::middle(){
+	/*
+	Objective       : Middle element of The Linked list
+	Input parameter : None
+	Output Values   : None
+	Description     : Member function definition
+	Approach        : Iteratively traverse the linked list and find Middle
+	                  the element.
+	*/
+	if(head == NULL){
+		cout << "No element ";
+		return;
+	}
+
+	if(head->next == NULL){
+		cout << "Middle element: " << head->data;
+		return;
+	}
+	int count = length_iterative();
+	node<T>* temp = head;
+	int travel = 1;
+	while(count > 2 && travel < count/2){
+		temp = temp->next;
+		travel++;
+	}
+	if(count%2 == 0){
+	cout << "Middle elements: " << temp->data << "," << temp->next->data;
+}
+else{
+	cout << "Middle element: " << temp->next->data;
+}
+return;
+}
+
 int main(){
 	/*
 	Objective       : Main function of program
@@ -146,7 +181,7 @@ int main(){
 	int choice;
 	while(1){
 		cout <<"\n\n\n***********MENU*********\n1.Insertion"
-         << "\n2.length of the linked list \n3.DISPLAY \n4.EXIT";
+         << "\n2.length of the linked list \n3.DISPLAY \n4.Middle element \n5.EXIT";
 		cout << "\nEnter your choice: ";
 	    cin >> choice;
 
@@ -162,7 +197,9 @@ int main(){
 		    case 3: cout <<"\nLinked list is: " ;
                 object.display();
   		       break;
-		    case 4: exit(0);
+		    case 4: object.middle();
+				     break;
+				case 5: exit(0);
 		    default: cout << "\nWrong choice...";
 		}
 	}
