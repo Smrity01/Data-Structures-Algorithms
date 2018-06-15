@@ -36,8 +36,8 @@ class linkedlist{
 		void insertion(T);
 		bool isempty();
 		int length_iterative();
-		//void length_recursive();
-		int middle();
+		int length_recursive(node<T>*temp);
+		void middle();
 		void display();
 };
 template <class T>
@@ -134,6 +134,22 @@ int linkedlist<T>::length_iterative(){
 		return length;
 }
 template <class T>
+int linkedlist<T>::length_recursive(node<T>*temp){
+	/*
+	Objective       : Length of The Linked list
+	Input parameter : Head of the linked list
+	Output Values   : None
+	Description     : Member function definition
+	Approach        : Recursively traverse the linked list and count the elements.
+	*/
+	if(temp == NULL){
+		return 0;
+	}
+	int length = 1;
+	length = length + length_recursive(temp->next);
+	return length;
+}
+template <class T>
 void linkedlist<T>::middle(){
 	/*
 	Objective       : Middle element of The Linked list
@@ -181,9 +197,10 @@ int main(){
 	int choice;
 	while(1){
 		cout <<"\n\n\n***********MENU*********\n1.Insertion"
-         << "\n2.length of the linked list \n3.DISPLAY \n4.Middle element \n5.EXIT";
+         << "\n2.length of the linked list \n3.DISPLAY \n4.Middle element"
+				 << "\n5.Recursive length \n6.EXIT";
 		cout << "\nEnter your choice: ";
-	    cin >> choice;
+	   cin >> choice;
 
 	   switch(choice){
 		    case 1: int element;
@@ -199,7 +216,9 @@ int main(){
   		       break;
 		    case 4: object.middle();
 				     break;
-				case 5: exit(0);
+				case 5: cout << "length is: " << object.length_recursive(object.head);
+				     break;
+				case 6: exit(0);
 		    default: cout << "\nWrong choice...";
 		}
 	}
