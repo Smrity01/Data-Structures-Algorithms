@@ -38,6 +38,7 @@ class linkedlist{
 		int length_iterative();
 		int length_recursive(node<T>*temp);
 		void middle();
+		void middle_pointers();
 		void display();
 };
 template <class T>
@@ -183,7 +184,28 @@ else{
 }
 return;
 }
-
+template <class T>
+void linkedlist<T>::middle_pointers(){
+	/*
+	Objective       : Middle element of The Linked list
+	Input parameter : None
+	Output Values   : None
+	Description     : Member function definition
+	Approach        : Using two pointers fast and slow
+	*/
+	if(head == NULL){
+		cout << "\nlist is empty...";
+		return;
+	}
+	node<T>*fast = head;
+	node<T>*slow = head;
+	while(fast!=NULL && fast->next != NULL){
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	cout << "Middle is: " << slow->data;
+	return;
+}
 int main(){
 	/*
 	Objective       : Main function of program
@@ -198,7 +220,7 @@ int main(){
 	while(1){
 		cout <<"\n\n\n***********MENU*********\n1.Insertion"
          << "\n2.length of the linked list \n3.DISPLAY \n4.Middle element"
-				 << "\n5.Recursive length \n6.EXIT";
+				 << "\n5.Recursive length \n6.Middle element with different Approach \n7.EXIT";
 		cout << "\nEnter your choice: ";
 	   cin >> choice;
 
@@ -218,7 +240,9 @@ int main(){
 				     break;
 				case 5: cout << "length is: " << object.length_recursive(object.head);
 				     break;
-				case 6: exit(0);
+				case 6: object.middle_pointers();
+				     break;
+				case 7:exit(0);
 		    default: cout << "\nWrong choice...";
 		}
 	}
