@@ -148,7 +148,7 @@ void linkedlist<T>::nth_node(int n){
 	}
 	int last = (length_iterative())-n+1;
 	int count = 1;
-	if (last <= 0){
+	if (last < 1){
 		cout << "Not possible";
 		return;
 	}
@@ -157,7 +157,12 @@ void linkedlist<T>::nth_node(int n){
 		temp = temp->next;
 		count++;
 	}
+	if (temp != NULL){
 	cout << "nth element: " << temp->data;
+  }
+  else{
+		cout << "Not possible";
+	}
 	return;
 }
 int main(){
