@@ -1,7 +1,7 @@
 /*
 Floyd cycle detection in linked list
 Written by : Smrity Chaudhary
-    Dated  : 20/06/2018
+    Dated  : 29/06/2018
 */
 #include<iostream>
 #include<conio.h>
@@ -35,7 +35,7 @@ class linkedlist{
 		linkedlist();
 		void insertion(T);
 		bool isempty();
-		void floyd_detection(node*<T>);
+		void floyd_detection(node<T>*);
 		void display();
 };
 template <class T>
@@ -112,7 +112,7 @@ void linkedlist<T>::display(){
 }
 
 template <class T>
-void linkedlist<T>::floyd_detection(node*<T> head){
+void linkedlist<T>::floyd_detection(node<T>* head){
 	/*
 	Objective       : Detect cycle in the Linked list
 	Input parameter : None
@@ -126,11 +126,15 @@ void linkedlist<T>::floyd_detection(node*<T> head){
 	}
 	node<T>*fast = head;
 	node<T>*slow = head;
-	while(fast!=NULL && fast->next != NULL){
+	while(slow && fast && fast->next){
 		slow = slow->next;
 		fast = fast->next->next;
+		if(slow == fast){
+			cout << "Loop found";
+			return;
+		}
 	}
-	cout << "Middle is: " << slow->data;
+	cout << "Loop not found ";
 	return;
 }
 int main(){
@@ -145,7 +149,7 @@ int main(){
 	linkedlist<int> object;
 	int choice;
 	while(1){
-		cout <<"\n\n\n***********MENU*********\n1.Insertion"
+		cout <<"\n\n\n***********MENU*********\n1.Insertion(atleast 5)"
          << "\n2.detect cycle \n3.EXIT";
 		cout << "\nEnter your choice: ";
 	   cin >> choice;
@@ -156,7 +160,8 @@ int main(){
 		            cin >> element;
 				        object.insertion(element);
 				    break;
-		    case 2: object.floyd_detection(object.head);
+		    case 2: object.head->next->next->next = object.head;
+				        object.floyd_detection(object.head);
 				    break;
 		    case 3: exit(0);
 		    default: cout << "\nWrong choice...";
