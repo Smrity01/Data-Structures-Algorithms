@@ -16,7 +16,7 @@ int main(){
   Output Value    : None
   Description     : Main Function of the program
   Approach        : Random number are generated and inserted into array and call
-                    linear search function
+                    Insertion sort function
   */
   int size;
   cout << "Enter the size of array: ";
@@ -26,21 +26,33 @@ int main(){
   int num;
   for(int i = 0;i<size; i++){
     num = rand() % size;
-    cout << "\n"<<num;
-	arr[i] = num;
+	  arr[i] = num;
+  }
+  insertion_sort(arr,size);
+  for(int i = 0;i<size; i++){
+    cout <<arr[i] << ",";
   }
 }
 
 int insertion_sort(int arr[],int size){
   /*
-  Objective       : Search element in the array
+  Objective       : Sort element in the array
   Input Parameters: array in which elements are stored
-                    element: that element need to be search
                     size   : Size of the array
-  Output Value    : Message whether element found or not
+  Output Value    : None
   Description     : Function of program
-  Approach        : Sequentially search the element in the array using for loop
+  Approach        : Each element from beginning placed to its correct position
+                    in the first half sorted array using a for and a while loop.
   */
 
+  for(int k=0;k<size;k++){
+      int index = k;
+      while(arr[index-1] > arr[index] && index > 0){
+        int temp = arr[index];
+        arr[index] = arr[index-1];
+        arr[index-1] = temp;
+        index--;
+    }
+  }
   return 0;
 }
