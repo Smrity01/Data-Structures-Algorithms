@@ -44,15 +44,22 @@ int insertion_sort(int arr[],int size){
   Approach        : Each element from beginning placed to its correct position
                     in the first half sorted array using a for and a while loop.
   */
-
+int count_of_comprisons = 0;
   for(int k=0;k<size;k++){
       int index = k;
+      count_of_comprisons = 0;
       while(arr[index-1] > arr[index] && index > 0){
         int temp = arr[index];
         arr[index] = arr[index-1];
         arr[index-1] = temp;
         index--;
+        if(index>0){
+      count_of_comprisons++;
     }
+    cout << "count_of_comprisons:" << count_of_comprisons << "\n";
+    }
+    
   }
+  
   return 0;
 }
