@@ -6,17 +6,17 @@
 #include<iostream>
 using namespace std;
 
-void spiralmatrix(int a[4][5],int row,int col);
+void spiralmatrix(int a[1][1],int row,int col);
 int main(){
   /*
   Objective        : Declare an initialize the array and spiralmatrix() function
   Input Parameters : None
   Output values    : None
   */
-  int A[4][5]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-  spiralmatrix(A,4,5);
+  int A[1][1]={1};
+  spiralmatrix(A,1,1);
 }
-void spiralmatrix(int a[4][5],int row,int col){
+void spiralmatrix(int a[1][1],int row,int col){
   /*
   Objective        : To print spiral matrix
   Input Parameters : Given matrix
