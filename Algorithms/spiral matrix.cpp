@@ -13,8 +13,8 @@ int main(){
   Input Parameters : None
   Output values    : None
   */
-  int A[1][1]={1};
-  spiralmatrix(A,1,1);
+  int A[3][1]={1,2,3};
+  spiralmatrix(A,3,1);
 }
 void spiralmatrix(int a[1][1],int row,int col){
   /*
@@ -26,33 +26,32 @@ void spiralmatrix(int a[1][1],int row,int col){
                     and first column of the matrix. Repeat the process on
                     remaining matrix.
   */
-  int elements = row*col;
   int i = 0,j = 0;
-  while (elements>0){
+  while (i<row && j<col){
     //print first row of the matrix
     for (int index = j;index < col;index++){
       cout << a[i][index] << ",";
-      elements--;
     }
-    col--;
     i++;
     //print last column of the matrix
     for (int index = i;index < row;index++){
-      cout << a[index][col] << ",";
-      elements--;
+      cout << a[index][col-1] << ",";
     }
-    row--;
+    col--;
     //print last row of the matrix
-    for (int index = col-1;index>=j;index--){
-      cout << a[row][index] << ",";
-      elements--;
+    if(i<row){
+        for (int index = col-1;index>=j;index--){
+                cout << a[row-1][index] << ",";
+        }
+        row--;
     }
     //print first column of the matrix
-    for (int index = row-1;index>=i;index--){
-      cout << a[index][j] << ",";
-      elements--;
+    if(j<col){
+        for (int index = row-1;index>=i;index--){
+                cout << a[index][j] << ",";
+        }
+        j++;
     }
-    j++;
   }
 
   return;
