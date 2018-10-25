@@ -7,10 +7,12 @@ written By : Smrity Chaudhary
 #include<vector>
 using namespace std;
 
+int **order;
+void optimalparanthesis(int i,int j);
 int matrixmultiplication(vector<int>);
 int main(){
   /*
-  Objective       : To take input from user and call matrixmultiplication function
+  Objective       : To take input from user and call matrix multiplication function
   Input Parameter : None
   Output value    : None
   Description     : Main function of the Programming
@@ -26,7 +28,13 @@ int main(){
     cout << "Do you want to Enter more(y/n): ";
     cin >> choice;
   }
-  matrixmultiplication(dimensions);
+  if(dimensions.size()==1){
+    cout << "\nAtleast enter dimensions for 1 matrix..";
+  }
+  else{
+        matrixmultiplication(dimensions);
+  optimalparanthesis(0,dimensions.size()-2);
+  }
 }
 
 int matrixmultiplication(vector<int> dim){
@@ -41,19 +49,19 @@ int matrixmultiplication(vector<int> dim){
                     position of paranthesis.
 
   */
-  int size = dim.size()-1;
-  int cost[size][size];
-
-  int order[size][size];
-
+  int dim_size = dim.size()-1;
+  int cost[dim_size][dim_size];
+  order = new int *[dim_size];
+  for(int i=0;i<dim_size;i++)
+    order[i] = new int[dim_size];
   /*
   Order Matrix represents the order of paranthesis in which
   each subproblem is solved.It is also evaluated in Diagonal
   Manner.
   */
 
-  for (int i=0;i<size;i++){
-    for (int j=0;j<size;j++){
+  for (int i=0;i<dim_size;i++){
+    for (int j=0;j<dim_size;j++){
       if (i==j){
         cost[i][j]=0;
       }
@@ -70,7 +78,7 @@ int matrixmultiplication(vector<int> dim){
     int b = 1;
     int i = a;
     int j = b;
-  while(b<size){
+  while(b<dim_size){
 
       for (int k=i;k<j;k++){
         int temp = cost[i][k] + cost[k+1][j] + (dim[i]*dim[k+1]*dim[j+1]);
@@ -78,45 +86,43 @@ int matrixmultiplication(vector<int> dim){
           cost[i][j] = temp;
 
           // Updataing Order of paranthesis, according to Minimum cost
-          order[i][j] = k+1;
+          order[i][j] = k;
         }
       }
       i = i+1;
       j = j+1;
-      if(j == size){
+      if(j == dim_size){
         b = b+1;
         i = a;
         j = b;
       }
     }
+/*
+    cout << "Order are: \n";
+    for (int i=0;i<dim_size;i++){
+            for (int j=0;j<dim_size;j++){
+                cout << order[i][j] << " ";
+    }
+    cout << "\n";
+    }
 
-    /*
-      cout << "Order are: \n";
-      for (int i=0;i<size;i++){
-    for (int j=0;j<size;j++){
-      cout << order[i][j] << " ";
-      }
-      cout << "\n";
-      }
-
-    cout << "cost are: \n";
-   for (int i=0;i<size;i++){
-    for (int j=0;j<size;j++){
+   cout << "cost are: \n";
+   for (int i=0;i<dim_size;i++){
+    for (int j=0;j<dim_size;j++){
     cout << cost[i][j] << " ";
     }
     cout<<"\n";
   }
-    */
-
+*/
     // Minimum Cost is given cost[0][size-1] Value
-    cout << "\n The Minimum Cost required to multiply "<<size
-         <<" matrices is : "<<cost[0][size-1] << "\n";
+    cout << "\n The Minimum Cost required to multiply "<<dim_size
+         <<" matrices is : "<<cost[0][dim_size-1] << "\n";
 
     // Represents the order of the paranthesis :
 
     cout << " The Order of paranthesis is : ";
-    for(int i=size-1;i>=2;i--)
-        cout << order[0][i] <<"  ";
+    for(int i=dim_size-1;i>=2;i--)
+        cout << order[0][i] <<"  \n";
 
     /*
     Example :
@@ -138,4 +144,15 @@ int matrixmultiplication(vector<int> dim){
         Third  - 1: ((A1 (A2 A3)) A4) A5
     */
 
+}
+void optimalparanthesis(int i,int j){
+    if(i==j){
+        cout <<  " A" << i+1;
+    }
+    else{
+        cout << "(";
+        optimalparanthesis(i,order[i][j]);
+        optimalparanthesis((order[i][j])+1,j);
+        cout << ")";
+    }
 }
