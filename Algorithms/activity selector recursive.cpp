@@ -1,5 +1,5 @@
 /*
-Implementation of iterative activity selection problem
+Implementation of Recursive activity selection problem
 Written by : Smrity Chaudhary
 Dated      : 21/11/2018
 */
@@ -12,6 +12,7 @@ using namespace std;
 
 vector< pair<int,int> > input();
 void activity_selector();
+set< pair<int,int> > recursive_activity_selector(vector< pair<int,int> >,int);
 int main() {
     /*
     Objective       : Driver function of the program.
@@ -40,13 +41,8 @@ vector< pair<int,int> > input() {
             cin >> time.second;
             cout << "Enter end time of activity: ";
             cin >> time.first;
-            if (time.first < time.second ) {
-                cout << "\n Finish time cannot be less than start time...ENTER AGAIN!!!!";
-            }
-            else{
-                activity_time.push_back(time);
-                number_of_activities--;
-            }
+            activity_time.push_back(time);
+            number_of_activities--;
     }
     return activity_time;
 }
@@ -65,14 +61,7 @@ void activity_selector() {
     activity_time = input();
     sort(activity_time.begin(),activity_time.end() );
     set< pair<int,int> > activity_subset;
-    int k = 0;
-    activity_subset.insert(activity_time[0]);
-    for (int i=2;i<activity_time.size();i++){
-        if(activity_time[i].second >= activity_time[k].first) {
-            activity_subset.insert(activity_time[i]);
-            k = i;
-        }
-    }
+    activity_subset = recursive_activity_selector(activity_time,0);
     //Print the maximum size subset of mutually compatible activities.
     set< pair<int,int> >::iterator iter;
     cout << "\n\n**Maximum subset of compatible activities**\n\n ";
@@ -82,4 +71,15 @@ void activity_selector() {
         cout << "\nActivity :\n" << "\tstart time: " << time.second
         << "\n\tfinish time: " << time.first;
     }
+}
+set< pair<int,int> > recursive_activity_selector(vector< pair<int,int> > activity_time,int k) {
+    int m =k+1;
+    while (m<activity_time.size() and activity_time[m].second < activity[k].first) {
+        m = m+1;
+    }
+    if(m<activity_time.size()) {
+            return
+
+    }
+
 }
