@@ -1,7 +1,7 @@
 /*
-Nth node from end of the linked list
+Reverse of the linked list
 Written by : Smrity Chaudhary
-    Dated  : 17/06/2018
+    Dated  : 22/01/2019
 */
 #include<iostream>
 #include<conio.h>
@@ -21,7 +21,7 @@ struct node{
 };
 
 template <class T>
-class linkedlist{
+class Linkedlist{
 	/*
 	Objective       : Creating a class Linkedlist
 	Input parameter : None
@@ -32,15 +32,15 @@ class linkedlist{
 	*/
 	public:
 		node<T>* head;
-		linkedlist();
-		void insertion(T);
-		bool isempty();
-		int length_iterative();
-		void nth_node(int n);
-		void display();
+		Linkedlist();
+		void insertBack(T);
+		bool isEmpty();
+		int lengthOfList();
+		void reverseList();
+		void displayList();
 };
 template <class T>
-linkedlist<T>::linkedlist(){
+Linkedlist<T>::Linkedlist(){
 	/*
 	Objective       : Creating a constructor of class Linkedlist
 	Input parameter : None
@@ -51,7 +51,7 @@ linkedlist<T>::linkedlist(){
 	head = NULL;
 }
 template <class T>
-bool linkedlist<T>::isempty(){
+bool Linkedlist<T>::isEmpty(){
 	/*
 	Objective       : check whether the Linked list is empty or not
 	Input parameter : None
@@ -68,7 +68,7 @@ bool linkedlist<T>::isempty(){
 	}
 }
 template <class T>
-void linkedlist<T>::insertion(T element){
+void Linkedlist<T>::insertBack(T element){
 	/*
 	Objective       : Inserting in Linked list at the back
 	Input parameter : Element to be inserted
@@ -92,7 +92,7 @@ void linkedlist<T>::insertion(T element){
 
 }
 template <class T>
-void linkedlist<T>::display(){
+void Linkedlist<T>::displayList(){
 	/*
 	Objective       : Displaying the elements of Linked list
 	Input parameter : None
@@ -113,7 +113,7 @@ void linkedlist<T>::display(){
 }
 
 template <class T>
-int linkedlist<T>::length_iterative(){
+int Linkedlist<T>::lengthOfList(){
 	  /*
 		Objective       : Length of The Linked list
 		Input parameter : None
@@ -133,38 +133,28 @@ int linkedlist<T>::length_iterative(){
 		return length;
 }
 template <class T>
-void linkedlist<T>::nth_node(int n){
-	/*
-	Objective       : Nth node from end of The Linked list
-	Input parameter : Head of the linked list
-	Output Values   : None
-	Description     : Member function definition
-	Approach        : iteratively traverse the linked list and find Nth element
-	                  from the end using length function.
-	*/
-	if (head == NULL){
-		cout << "\nNo element...";
-		return;
-	}
-	int last = (length_iterative())-n+1;
-	int count = 1;
-	if (last < 1){
-		cout << "Not possible";
-		return;
-	}
-	node<T>* temp = head;
-	while( count < last){
-		temp = temp->next;
-		count++;
-	}
-	if (temp != NULL){
-	cout << "nth element: " << temp->data;
-  }
-  else{
-		cout << "Not possible..";
-	}
-	return;
+void Linkedlist<T>::reverseList() {
+    if (head == NULL) {
+        cout << "\nList is empty...";
+    }
+    else if(head->next == NULL) {
+        cout << "\nOnly one element in the list...";
+    }
+    else {
+        node<T>* curr = head;
+        node<T>* temp = curr->next;
+        node<T>* prev = NULL;
+        while (temp != NULL) {
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+            temp = temp->next;
+        }
+        curr->next = prev;
+        head = curr;
+    }
 }
+
 int main(){
 	/*
 	Objective       : Main function of program
@@ -174,12 +164,12 @@ int main(){
 	Approach        : Take input form user and according to the choice the class
                    function is called
 	*/
-	linkedlist<int> object;
+	Linkedlist<int> object;
 	int choice;
 	while(1){
 		cout <<"\n\n\n***********MENU*********\n1.Insertion"
          << "\n2.length of the linked list \n3.DISPLAY \n4."
-				 << "Nth node from end \n5.EXIT";
+				 << "Reverse The list  \n5.EXIT";
 		cout << "\nEnter your choice: ";
 	   cin >> choice;
 
@@ -187,18 +177,19 @@ int main(){
 		    case 1: int element;
 		            cout << "Enter an element: ";
 		            cin >> element;
-				        object.insertion(element);
+				        object.insertBack(element);
 				    break;
 		    case 2:
-				    cout << "Length of the linked list is: " <<object.length_iterative();
+				    cout << "Length of the linked list is: " <<object.lengthOfList();
 				    break;
 		    case 3: cout <<"\nLinked list is: " ;
-                object.display();
+                object.displayList();
   		       break;
-		    case 4: int n;
-				        cout << "\nEnter N: ";
-				        cin >> n;
-				        object.nth_node(n);
+		    case 4: cout << "Reverse List: \n";
+				    object.reverseList();
+				    if(!object.isEmpty()){
+                      object.displayList();
+				    }
 				     break;
 				//case 5: exit(0);
 		    default: cout << "\nWrong choice...";

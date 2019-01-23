@@ -8,7 +8,7 @@ written By : Smrity Chaudhary
 using namespace std;
 
 int **order;
-void optimalparanthesis(int i,int j);
+void optimalparenthesis(int i,int j);
 int matrixmultiplication(vector<int>);
 int main(){
   /*
@@ -33,20 +33,20 @@ int main(){
   }
   else{
         matrixmultiplication(dimensions);
-  optimalparanthesis(0,dimensions.size()-2);
+  optimalparenthesis(0,dimensions.size()-2);
   }
 }
 
 int matrixmultiplication(vector<int> dim){
   /*
   Objective       :  To find the minimum cost of matrix multiplication and order
-                     of paranthesis
+                     of parenthesis
   Input Parameter : Dimensions of matrices in vector
   Output Value    : Cost of matrix multiplication
   Description     : Calculate the minimum cost of matrix chain multiplication
   Approach        : Cost will be calculated diagonally (upper diagonal) using a
                     while loop and internally a for loop (K) to track the right
-                    position of paranthesis.
+                    position of parenthesis.
 
   */
   int dim_size = dim.size()-1;
@@ -55,7 +55,7 @@ int matrixmultiplication(vector<int> dim){
   for(int i=0;i<dim_size;i++)
     order[i] = new int[dim_size];
   /*
-  Order Matrix represents the order of paranthesis in which
+  Order Matrix represents the order of parenthesis in which
   each subproblem is solved.It is also evaluated in Diagonal
   Manner.
   */
@@ -69,7 +69,7 @@ int matrixmultiplication(vector<int> dim){
     cost[i][j] = 999;
       }
 
-      // Initialisation Of Order Matrix
+      // Initialization Of Order Matrix
       order[i][j] = 0;
     }
     }
@@ -85,7 +85,7 @@ int matrixmultiplication(vector<int> dim){
         if(temp < cost[i][j]){
           cost[i][j] = temp;
 
-          // Updataing Order of paranthesis, according to Minimum cost
+          // Updating Order of parenthesis, according to Minimum cost
           order[i][j] = k;
         }
       }
@@ -118,16 +118,16 @@ int matrixmultiplication(vector<int> dim){
     cout << "\n The Minimum Cost required to multiply "<<dim_size
          <<" matrices is : "<<cost[0][dim_size-1] << "\n";
 
-    // Represents the order of the paranthesis :
+    // Represents the order of the parenthesis :
 
-    cout << " The Order of paranthesis is : ";
+    cout << " The Order of parenthesis is : ";
     for(int i=dim_size-1;i>=2;i--)
         cout << order[0][i] <<"  \n";
 
     /*
     Example :
 
-    If the output of Order Of paranthesis for 5 Matrices is :
+    If the output of Order Of parenthesis for 5 Matrices is :
     4 3 1 : it is interpreted as :
 
     let say, Matrices be : A1 A2 A3 A4 A5
@@ -138,21 +138,21 @@ int matrixmultiplication(vector<int> dim){
     Order of A4 : 1 X 1
     Order of A5 : 1 X 3
 
-    Order of paranthesis :
+    Order of parenthesis :
         First  - 4: (A1 A2 A3 A4) A5
         Second - 3: ((A1 A2 A3) A4) A5
         Third  - 1: ((A1 (A2 A3)) A4) A5
     */
 
 }
-void optimalparanthesis(int i,int j){
+void optimalparenthesis(int i,int j){
     if(i==j){
         cout <<  " A" << i+1;
     }
     else{
         cout << "(";
-        optimalparanthesis(i,order[i][j]);
-        optimalparanthesis((order[i][j])+1,j);
+        optimalparenthesis(i,order[i][j]);
+        optimalparenthesis((order[i][j])+1,j);
         cout << ")";
     }
 }
