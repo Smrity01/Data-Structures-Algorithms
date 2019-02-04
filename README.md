@@ -1,2 +1,1 @@
-# Cpp_Codes
-This repository contains the basic c++ codes
+# All algorithms and data structures are implemented using C++.
