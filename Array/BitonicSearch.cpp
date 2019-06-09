@@ -1,6 +1,6 @@
 /*
 An array is bitonic if it is comprised of increasing sequence of integers and followed
-immediatelyby a decreasing Sequence of integers.
+immediately by a decreasing Sequence of integers.
 Find that point.
 Time complexity : O(log n)
 */
