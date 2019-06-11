@@ -1,11 +1,13 @@
 /*
 Implementation of Longest common subsequence
+It traverse strings from start to end.
 Written By : Smrity Chaudhary
 Dated      : 09/10/2018
 */
 #include<iostream>
 #include<vector>
 #include<stack>
+#include<algorithm>
 using namespace std;
 
 void longest_subsequence(vector<char>,vector<char>);
