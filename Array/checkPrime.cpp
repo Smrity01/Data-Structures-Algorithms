@@ -43,6 +43,5 @@ void AllPrimeTillN(int A){
     }
     for (int i = 0; i <= A; i++){
         if (factors[i] == 1)
-        cout << i << ",";
     }
 }
