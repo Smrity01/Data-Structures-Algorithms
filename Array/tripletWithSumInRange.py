@@ -1,9 +1,7 @@
 '''
-/*
 Given an array of real numbers greater than zero in form of strings.
 Find if there exists a triplet (a,b,c) such that 1 < a+b+c < 2 . 
 Return 1 for true or 0 for false
-*/
 '''
 class Solution:
     def solve(self, A):
